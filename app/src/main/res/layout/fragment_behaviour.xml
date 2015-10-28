@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"/>
+
+    <TextView
+        android:id="@+id/x_axis"
+        android:text="Eje X"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"/>
+
+    <TextView
+        android:id="@+id/y_axis"
+        android:text="Eje Y"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"/>
+
+    <ImageView
+        android:id="@+id/joystick"
+        android:background="@drawable/poly"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="300dp"/>
+</LinearLayout>
