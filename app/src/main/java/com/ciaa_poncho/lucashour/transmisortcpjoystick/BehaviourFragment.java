@@ -3,14 +3,11 @@ package com.ciaa_poncho.lucashour.transmisortcpjoystick;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +17,8 @@ public class BehaviourFragment extends Fragment implements View.OnTouchListener 
     private TextView y_axis;
     private ImageView joystick;
     private Toast toast;
-    private int scale;
+    private int pwm_motor1 = 0;
+    private int pwm_motor2 = 0;
 
     public BehaviourFragment(){}
 
@@ -28,6 +26,7 @@ public class BehaviourFragment extends Fragment implements View.OnTouchListener 
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        TcpSocketData.getInstance().setUI_context(getActivity());
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -49,7 +48,6 @@ public class BehaviourFragment extends Fragment implements View.OnTouchListener 
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        scale = joystick.getHeight();
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -65,9 +63,9 @@ public class BehaviourFragment extends Fragment implements View.OnTouchListener 
         return true;
     }
 
-    private static String formatMessageToSend(int value){
+    private static String formatMessageToSend(int value, int motorId){
         String string = String.valueOf(value);
-        return (String.valueOf(string.length() + 1) + "%" + string);
+        return ("%" + String.valueOf(string.length() + 1) + String.valueOf(motorId) + string);
     }
 
     private void displayInformationMessage(String message){
@@ -91,26 +89,60 @@ public class BehaviourFragment extends Fragment implements View.OnTouchListener 
     }
 
     public boolean onTouch(View v, MotionEvent event) {
+
         int action = event.getActionMasked();
-        int value;
+        int value_y;
+        int value_x;
+
+
         switch (action){
             case MotionEvent.ACTION_DOWN:
-                value = formatNumber(event.getX());
-                if (value <= 200 && value >= 0)
-                    x_axis.setText(String.valueOf(value));
-                value = formatNumber(event.getY());
-                if (value <= 200 && value >= 0)
-                    y_axis.setText(String.valueOf(value));
+                value_y = formatNumber(event.getY());
+                value_x = formatNumber(event.getX());
+
+                if (value_x < 200 && value_x > 0 && value_y < 200 && value_y > 0){
+                    pwm_motor1 = value_y;
+                    pwm_motor2 = value_y;
+                    if (value_x < 95){
+                        if (value_y < 100)
+                            pwm_motor1 = value_y + (int)((100 - value_x)*(100 - value_y)/100.0);
+                        else
+                            pwm_motor1 = value_y - (int)((100 - value_x)*(value_y - 100)/100.0);
+                    }
+                    if (value_x > 105){
+                        if (value_y < 100)
+                            pwm_motor2 = value_y + (int)((value_x - 100)*(100 - value_y)/100.0);
+                        else
+                            pwm_motor2 = value_y - (int)((value_x - 100)*(value_y - 100)/100.0);
+                    }
+                }
                 break;
             case MotionEvent.ACTION_MOVE:
-                value = formatNumber(event.getX());
-                if (value <= 200 && value >= 0)
-                    x_axis.setText(String.valueOf(value));
-                value = formatNumber(event.getY());
-                if (value <= 200 && value >= 0)
-                    y_axis.setText(String.valueOf(value));
+                value_y = formatNumber(event.getY());
+                value_x = formatNumber(event.getX());
+
+                if (value_x < 200 && value_x > 0 && value_y < 200 && value_y > 0){
+                    pwm_motor1 = value_y;
+                    pwm_motor2 = value_y;
+                    if (value_x < 95){
+                        if (value_y < 100)
+                            pwm_motor1 = value_y + (int)((100 - value_x)*(100 - value_y)/100.0);
+                        else
+                            pwm_motor1 = value_y - (int)((100 - value_x)*(value_y - 100)/100.0);
+                    }
+                    if (value_x > 105){
+                        if (value_y < 100)
+                            pwm_motor2 = value_y + (int)((value_x - 100)*(100 - value_y)/100.0);
+                        else
+                            pwm_motor2 = value_y - (int)((value_x - 100)*(value_y - 100)/100.0);
+                    }
+                }
                 break;
         }
+        TcpSocketManager.sendDataToSocket(formatMessageToSend(pwm_motor1, 0));
+        TcpSocketManager.sendDataToSocket(formatMessageToSend(pwm_motor2, 1));
+        x_axis.setText(String.valueOf(pwm_motor1));
+        y_axis.setText(String.valueOf(pwm_motor2));
 
         return true;
     }

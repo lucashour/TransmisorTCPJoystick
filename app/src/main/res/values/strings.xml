@@ -25,5 +25,6 @@
     <string name="configuration_title">CONFIGURACIÓN</string>
     <string name="option1">Dirección IP</string>
     <string name="option2">Puerto</string>
+    <string name="incoming_message_label">Respuesta del servidor</string>
 
 </resources>

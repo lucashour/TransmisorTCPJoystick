@@ -38,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TcpSocketData.getInstance().setUI_context(this);
         setContentView(R.layout.activity_main);
 
          /* Configuración del toolbar.*/

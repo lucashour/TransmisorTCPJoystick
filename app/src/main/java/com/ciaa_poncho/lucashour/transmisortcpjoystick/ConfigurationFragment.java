@@ -14,6 +14,8 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
     private EditText ip_address;
     private EditText port_number;
     private Button button;
+    private Button connect_button;
+    private Button disconnect_button;
     private Toast toast;
 
     public ConfigurationFragment() {
@@ -30,6 +32,8 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
         if (v != null) {
 
             button = ((Button) v.findViewById(R.id.button));
+            connect_button = ((Button) v.findViewById(R.id.connect_button));
+            disconnect_button = ((Button) v.findViewById(R.id.disconnect_button));
             ip_address = ((EditText) v.findViewById(R.id.ip_address));
             ip_address.setText(TcpSocketData.getInstance().getIpAddress());
             port_number = ((EditText) v.findViewById(R.id.port_number));
@@ -43,6 +47,8 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         button.setOnClickListener(this);
+        connect_button.setOnClickListener(this);
+        disconnect_button.setOnClickListener(this);
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -61,6 +67,7 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
             case R.id.button:
                 if (ip_address.getText().toString().isEmpty())
                     ip_address.setText("192.168.4.1");
+                port_number.setText("8080");
                 TcpSocketData.getInstance().setIpAddress(ip_address.getText().toString());
                 TcpSocketData.getInstance().setPortNumber(Integer.parseInt(port_number.getText().toString()));
                 Toast.makeText(view.getContext(), "Datos configurados correctamente", Toast.LENGTH_SHORT).show();
@@ -89,7 +96,7 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
     }
 
     private void showToastMessage(String message){
-        showToast(message, Toast.LENGTH_SHORT);
+        showToast(message,Toast.LENGTH_SHORT);
     }
 
     private void showLongToastMessage(String message){
