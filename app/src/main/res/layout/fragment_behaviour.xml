@@ -1,86 +1,175 @@
 <?xml version="1.0"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/linearLayout"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <View
+    <LinearLayout
+        android:paddingTop="25dp"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:layout_width="fill_parent"
-        android:layout_height="30dp"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/x_axis"
-        android:text="Eje X"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        <TextView
+            android:text="Motor 1"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/holo_blue_dark"/>
 
-    <View
+        <TextView
+            android:text=" - PWM: "
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/x_axis"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:hint="---"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/holo_blue_dark"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:layout_width="fill_parent"
-        android:layout_height="10dp"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/y_axis"
-        android:text="Eje Y"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
+        <TextView
+            android:text="Motor 2sub    "
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/holo_blue_dark"/>
 
-    <View
+        <TextView
+            android:text=" - PWM: "
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/y_axis"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="---"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/holo_blue_dark"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingTop="75dp"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:layout_width="fill_parent"
-        android:layout_height="30dp"/>
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/joystick"
-        android:background="@drawable/poly"
-        android:layout_gravity="center"
-        android:layout_width="300dp"
-        android:layout_height="300dp"/>
+        <TextView
+            android:text="Dirección: "
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/holo_blue_light"/>
 
-    <!--<View
+        <TextView
+            android:id="@+id/direction"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="---"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/holo_blue_dark"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingTop="100dp"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="30dp"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/incoming_message_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:hint="@string/incoming_message_label"
-        android:textIsSelectable="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/holo_blue_dark"/>-->
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"/>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="10dp"/>
 
-    <TextView
-        android:id="@+id/incoming_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:hint="@string/incoming_message_label"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textIsSelectable="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/holo_blue_dark"/>
-    <TextView
-        android:id="@+id/incoming_message2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:hint="@string/incoming_message_label"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textIsSelectable="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/holo_blue_dark"/>
+        <ImageView
+            android:id="@+id/joystick"
+            android:background="@drawable/poly"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="300dp"/>
 
-</LinearLayout>
+        <ScrollView
+            android:id="@+id/left_side_scroller"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/incoming_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:hint="@string/incoming_message_label_1"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textIsSelectable="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="5dp"/>
+
+                <TextView
+                    android:id="@+id/incoming_message2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:hint="@string/incoming_message_label_2"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textIsSelectable="true"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

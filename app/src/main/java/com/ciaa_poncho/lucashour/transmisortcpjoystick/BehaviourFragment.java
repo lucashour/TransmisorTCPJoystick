@@ -15,6 +15,7 @@ public class BehaviourFragment extends Fragment implements View.OnTouchListener 
 
     private TextView x_axis;
     private TextView y_axis;
+    private TextView direction;
     private ImageView joystick;
     private Toast toast;
     private int pwm_motor1 = 0;
@@ -38,6 +39,7 @@ public class BehaviourFragment extends Fragment implements View.OnTouchListener 
 
             x_axis = (TextView) view.findViewById(R.id.x_axis);
             y_axis = (TextView) view.findViewById(R.id.y_axis);
+            direction = (TextView) view.findViewById(R.id.direction);
             joystick = (ImageView) view.findViewById(R.id.joystick);
             joystick.setOnTouchListener(this);
             toast = new Toast(getActivity().getApplicationContext());
@@ -141,13 +143,25 @@ public class BehaviourFragment extends Fragment implements View.OnTouchListener 
         }
         TcpSocketManager.sendDataToSocket(formatMessageToSend(pwm_motor1, 0));
         TcpSocketManager.sendDataToSocket(formatMessageToSend(pwm_motor2, 1));
-        x_axis.setText(String.valueOf(pwm_motor1));
-        y_axis.setText(String.valueOf(pwm_motor2));
-
+        x_axis.setText(formatNumberToMotorExpression(pwm_motor1, 1));
+        y_axis.setText(formatNumberToMotorExpression(pwm_motor2, 2));
         return true;
     }
 
-    public int formatNumber(float value){
+    private int formatNumber(float value){
         return Math.round((value / this.joystick.getHeight()) * 200);
+    }
+
+    private String formatNumberToMotorExpression(int value, int motor_id){
+        String pwm;
+        if (value < 100){
+            direction.setText("AVANCE");
+            pwm = String.valueOf(100 - value);
+        }
+        else{
+            direction.setText("RETROCESO");
+            pwm = String.valueOf(value - 100);
+        }
+        return pwm + "%";
     }
 }

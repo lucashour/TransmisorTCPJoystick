@@ -47,6 +47,7 @@ public class TcpAsyncReceive extends AsyncTask<Void, String, Void> {
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()), 50);
             while (TcpSocketData.getInstance().canReceiveData()){
                 if ((currentCharacter = (char) input.read()) != null){
+                //if((currentCharacter = TcpSocketManager.receiveCharFromSocket()) != 0){
                     if (currentCharacter == '$')
                         limitCounter++;
                     else {
@@ -67,6 +68,15 @@ public class TcpAsyncReceive extends AsyncTask<Void, String, Void> {
     private String processIncomingMessage(String incomingMessage){
         /* Procesamiento de string de entrada */
         String command = incomingMessage.substring(0, 5);
+        String output;
+        switch (command){
+            case "SPEED":
+                output = " Motor ";
+                break;
+            default:
+                output = " ... ";
+                break;
+        }
         char motorId = incomingMessage.charAt(5);
         String dataType = "";
         switch (incomingMessage.charAt(6)){
@@ -79,7 +89,7 @@ public class TcpAsyncReceive extends AsyncTask<Void, String, Void> {
         }
         String value = incomingMessage.substring(7,incomingMessage.length());
         /* Construcción de mensaje para mostrar */
-        return (motorId + dataType + " Motor " + motorId + ": " + value);
+        return (motorId + dataType + output + motorId + ": " + value);
     }
 }
 /*
