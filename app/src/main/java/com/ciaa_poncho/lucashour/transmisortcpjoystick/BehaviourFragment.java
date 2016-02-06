@@ -158,6 +158,10 @@ public class BehaviourFragment extends Fragment implements View.OnTouchListener 
             direction.setText("AVANCE");
             pwm = String.valueOf(100 - value);
         }
+        else if (value == 100) {
+            direction.setText("FRENADO");
+            pwm = "0";
+        }
         else{
             direction.setText("RETROCESO");
             pwm = String.valueOf(value - 100);

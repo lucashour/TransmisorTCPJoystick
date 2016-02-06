@@ -13,19 +13,23 @@ public class TcpSocketManager {
         boolean connected = false;
         int portNumber = TcpSocketData.getInstance().getPortNumber();
         if (!isSocketConnected()){
-            try {
-                TcpSocketData.getInstance().setSocket(new Socket(ipAddress, portNumber));
-                result = "Conexión establecida con " + ipAddress + ":" + String.valueOf(portNumber) + ".";
-                connected = true;
-            } catch (IOException e) {
-                e.printStackTrace();
-                result = "Error al intentar establecer conexión.";
+            if (TcpSocketData.getInstance().isDataCompleted()){
+                try {
+                    TcpSocketData.getInstance().setSocket(new Socket(ipAddress, portNumber));
+                    result = "Conexión establecida con " + ipAddress + ":" + String.valueOf(portNumber) + ".";
+                    connected = true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    result = "Error al intentar establecer conexión: destino inalcanzable";
+                }
+                if (connected){
+                    TcpSocketData.getInstance().startDataRequest();
+                    TcpAsyncReceive tcpCommunication = new TcpAsyncReceive(TcpSocketData.getInstance().getSocket());
+                    tcpCommunication.executeOnExecutor(TcpAsyncReceive.THREAD_POOL_EXECUTOR);
+                }
             }
-            if (connected){
-                TcpSocketData.getInstance().startDataRequest();
-                TcpAsyncReceive tcpCommunication = new TcpAsyncReceive(TcpSocketData.getInstance().getSocket());
-                tcpCommunication.executeOnExecutor(TcpAsyncReceive.THREAD_POOL_EXECUTOR);
-            }
+            else
+                result = "Error al intentar establecer conexión. Configure IP y presione GUARDAR.";
             return result;
         }
         else

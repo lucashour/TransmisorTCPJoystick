@@ -91,16 +91,34 @@
 		android:layout_width="fill_parent"
 		android:layout_height="30dp"/>
 
-	<Button
-		android:id="@+id/button"
-		android:layout_width="wrap_content"
+	<TableRow
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:ems="10"
-		android:textStyle="bold"
-		android:text="@string/submit_configuration"
-		android:textColor="@android:color/white"
-		android:background="@drawable/apptheme_btn_default_holo_dark"/>
+		android:layout_gravity="center">
+
+		<Button
+			android:id="@+id/default_config_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:ems="10"
+			android:textStyle="bold"
+			android:text="@string/default_configuration"
+			android:textColor="@android:color/white"
+			android:background="@drawable/apptheme_btn_default_focused_holo_dark"/>
+
+		<Button
+			android:id="@+id/modify_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:ems="10"
+			android:textStyle="bold"
+			android:text="@string/submit_configuration"
+			android:textColor="@android:color/white"
+			android:background="@drawable/apptheme_btn_default_holo_dark"/>
+
+	</TableRow>
 
 	<View
 		android:layout_width="fill_parent"

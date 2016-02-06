@@ -37,6 +37,8 @@ public class TcpSocketData {
 
 	public String getIpAddress(){ return ip_address; }
 
+	public boolean isDataCompleted() { return this.ip_address != null; }
+
     public void setSocket(Socket tcpSocket){ socket = tcpSocket; }
 
     public Socket getSocket(){ return socket; }

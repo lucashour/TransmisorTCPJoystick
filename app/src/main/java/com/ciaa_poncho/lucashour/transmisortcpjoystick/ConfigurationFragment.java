@@ -13,7 +13,8 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
 
     private EditText ip_address;
     private EditText port_number;
-    private Button button;
+    private Button default_config_button;
+    private Button modify_button;
     private Button connect_button;
     private Button disconnect_button;
     private Toast toast;
@@ -31,7 +32,8 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
 
         if (v != null) {
 
-            button = ((Button) v.findViewById(R.id.button));
+            default_config_button = ((Button) v.findViewById(R.id.default_config_button));
+            modify_button = ((Button) v.findViewById(R.id.modify_button));
             connect_button = ((Button) v.findViewById(R.id.connect_button));
             disconnect_button = ((Button) v.findViewById(R.id.disconnect_button));
             ip_address = ((EditText) v.findViewById(R.id.ip_address));
@@ -46,7 +48,8 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        button.setOnClickListener(this);
+        default_config_button.setOnClickListener(this);
+        modify_button.setOnClickListener(this);
         connect_button.setOnClickListener(this);
         disconnect_button.setOnClickListener(this);
     }
@@ -64,16 +67,19 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
             case R.id.disconnect_button:
                 displayInformationMessage(TcpSocketManager.disconnectFromSocket());
                 break;
-            case R.id.button:
-                if (ip_address.getText().toString().isEmpty())
-                    ip_address.setText("192.168.4.1");
+            case R.id.default_config_button:
+                ip_address.setText("192.168.4.1");
                 port_number.setText("8080");
-                TcpSocketData.getInstance().setIpAddress(ip_address.getText().toString());
-                TcpSocketData.getInstance().setPortNumber(Integer.parseInt(port_number.getText().toString()));
-                Toast.makeText(view.getContext(), "Datos configurados correctamente", Toast.LENGTH_SHORT).show();
                 break;
-
-
+            case R.id.modify_button:
+                if (ip_address.getText().toString().isEmpty() || port_number.getText().toString().isEmpty())
+                    Toast.makeText(view.getContext(), "Error al configurar datos", Toast.LENGTH_SHORT).show();
+                else{
+                    TcpSocketData.getInstance().setIpAddress(ip_address.getText().toString());
+                    TcpSocketData.getInstance().setPortNumber(Integer.parseInt(port_number.getText().toString()));
+                    Toast.makeText(view.getContext(), "Datos configurados correctamente", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
     }
 
