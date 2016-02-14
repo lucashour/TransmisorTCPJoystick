@@ -24,7 +24,7 @@ public class MainActivity extends ActionBarActivity {
     // Los títulos e íconos permanecen en un arreglo
 
     String TITLES[] = {"Comunicación","Configuración", "Calibración"};
-    int ICONS[] = {R.drawable.ic_action,R.drawable.ic_action};
+    int ICONS[] = {R.drawable.ic_action, R.drawable.ic_action, R.drawable.ic_action};
     private Fragment currentFragment;
     private Toolbar toolbar;                            // Declaración del Toolbar
     RecyclerView recyclerView;                          // Declaración del recyclerView
