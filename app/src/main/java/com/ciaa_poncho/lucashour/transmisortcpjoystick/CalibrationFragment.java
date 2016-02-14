@@ -61,13 +61,6 @@ public class CalibrationFragment extends Fragment implements View.OnClickListene
         setHasOptionsMenu(false); //Indicamos que este Fragment no tiene su propio menú de opciones
     }
 
-    private void showToast(String message, int duration){
-        if (toast != null)
-            toast.cancel();
-        toast = Toast.makeText(this.getActivity().getApplicationContext(), message, duration);
-        toast.show();
-    }
-
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.calibrate_motor_0_button:
