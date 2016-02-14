@@ -23,7 +23,7 @@ public class MainActivity extends ActionBarActivity {
     // Primero se declaran los títulos e íconos para el Navigation drawer List View
     // Los títulos e íconos permanecen en un arreglo
 
-    String TITLES[] = {"Comunicación","Configuración"};
+    String TITLES[] = {"Comunicación","Configuración", "Calibración"};
     int ICONS[] = {R.drawable.ic_action,R.drawable.ic_action};
     private Fragment currentFragment;
     private Toolbar toolbar;                            // Declaración del Toolbar
@@ -84,6 +84,14 @@ public class MainActivity extends ActionBarActivity {
                             }
                             ConfigurationFragment fragmentB = new ConfigurationFragment();
                             localFragmentManager.beginTransaction().replace(R.id.content, fragmentB).commit();
+                            break;
+                        case 3:
+                            if (currentFragment.getClass() != CalibrationFragment.class){
+                                currentFragment = new CalibrationFragment();
+                                localFragmentManager.beginTransaction().replace(R.id.content, currentFragment).commit();
+                            }
+                            CalibrationFragment fragmentC = new CalibrationFragment();
+                            localFragmentManager.beginTransaction().replace(R.id.content, fragmentC).commit();
                             break;
                     }
 

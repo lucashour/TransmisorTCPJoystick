@@ -28,5 +28,17 @@
     <string name="option2">Puerto</string>
     <string name="incoming_message_label_1">Estado del motor 1</string>
     <string name="incoming_message_label_2">Estado del motor 2</string>
+    <string name="calibration_title">CALIBRACIÓN</string>
+    <string name="calibration_description">
+        Seleccionar el tiempo de conteo de interrupciones en milisegundos para la calibración.
+        Valor máximo: 10000.</string>
+    <string name="calibration_time">Tiempo de calibración (ms)</string>
+    <string name="calibration_time_input">Tiempo (ms)</string>
+    <string name="calibration_slots_input">Ranuras de disco</string>
+    <string name="calibrate_motor_0_button">CALIBRAR MOTOR 0</string>
+    <string name="calibrate_motor_1_button">CALIBRAR MOTOR 1</string>
+    <string name="cancel_calibration_button">CANCELAR</string>
+    <string name="progress_motor_0">Progreso de motor 0</string>
+    <string name="progress_motor_1">Progreso de motor 1</string>
 
 </resources>

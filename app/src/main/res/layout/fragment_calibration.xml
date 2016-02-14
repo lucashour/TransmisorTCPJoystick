@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="15dp"
+        android:background="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:id="@+id/calibrations_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="@string/calibration_title"
+        android:textSize="@dimen/abc_text_size_medium_material"
+        android:singleLine="false"
+        android:textColor="@android:color/white"
+        android:background="@android:color/holo_blue_dark" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="15dp"
+        android:background="@android:color/holo_blue_dark" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"/>
+
+    <!--<TextView
+        android:id="@+id/calibration_time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:hint="@string/calibration_time"
+        android:textIsSelectable="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="15dp"/>
+
+      -->
+
+    <TextView
+        android:id="@+id/calibration_time_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="@string/calibration_description"
+        android:textIsSelectable="true"/>
+
+    <EditText
+        android:id="@+id/calibration_time"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:hint="@string/calibration_time_input"
+        android:inputType="number"
+        android:background="@drawable/apptheme_edit_text_holo_dark"
+        android:textAlignment="center"
+        android:ems="10">
+
+        <requestFocus/>
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/calibration_slots"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:hint="@string/calibration_slots_input"
+        android:inputType="number"
+        android:background="@drawable/apptheme_edit_text_holo_dark"
+        android:textAlignment="center"
+        android:ems="10"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="15dp"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="2"
+        android:layout_gravity="fill_horizontal">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/calibrate_motor_0_button"
+                android:layout_column="0"
+                android:layout_width="match_parent"
+                android:ems="10"
+                android:textStyle="bold"
+                android:text="@string/calibrate_motor_0_button"
+                android:textColor="@android:color/white"
+                android:background="@drawable/apptheme_btn_default_holo_dark"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/calibrate_motor_1_button"
+                android:layout_column="1"
+                android:layout_width="match_parent"
+                android:ems="10"
+                android:textStyle="bold"
+                android:text="@string/calibrate_motor_1_button"
+                android:textColor="@android:color/white"
+                android:background="@drawable/apptheme_btn_default_holo_dark"
+                android:layout_height="match_parent" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/cancel_calibration_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:textStyle="bold"
+        android:text="@string/cancel_calibration_button"
+        android:textColor="@android:color/white"
+        android:background="@drawable/apptheme_btn_default_holo_dark"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"/>
+
+    <TextView
+        android:id="@+id/motor_0_progress_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:hint="@string/progress_motor_0"
+        android:textIsSelectable="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="15dp"/>
+
+    <ProgressBar
+        android:id="@+id/motor_0_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:max="200"
+        style="@android:style/Widget.Material.ProgressBar.Horizontal"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="15dp"/>
+
+    <TextView
+        android:id="@+id/motor_1_progress_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:hint="@string/progress_motor_1"
+        android:textIsSelectable="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="15dp"/>
+
+    <ProgressBar
+        android:id="@+id/motor_1_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:max="200"
+        style="@android:style/Widget.Material.ProgressBar.Horizontal"/>
+
+
+</LinearLayout>
