@@ -1,4 +1,4 @@
-package com.ciaa_poncho.lucashour.transmisortcpjoystick;
+package com.ciaa_poncho.lucashour.transmisortcpjoystick.TCP;
 
 import java.io.BufferedReader;
 import java.io.IOException;

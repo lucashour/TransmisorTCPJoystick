@@ -6,153 +6,167 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<View
+	<ScrollView
+		android:id="@+id/left_side_scroller"
 		android:layout_width="fill_parent"
-		android:layout_height="15dp"
-		android:background="@android:color/holo_blue_dark" />
+		android:layout_height="wrap_content">
 
-	<TextView
-		android:id="@+id/academic_title"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center"
-		android:textStyle="bold"
-		android:text="@string/configuration_title"
-		android:textSize="@dimen/abc_text_size_medium_material"
-		android:singleLine="false"
-		android:textColor="@android:color/white"
-		android:background="@android:color/holo_blue_dark" />
-
-	<View
-		android:layout_width="fill_parent"
-		android:layout_height="15dp"
-		android:background="@android:color/holo_blue_dark" />
-
-	<View
-		android:layout_width="fill_parent"
-		android:layout_height="30dp"/>
-
-	<TextView
-		android:id="@+id/ip_address_label"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:textStyle="bold"
-		android:textAlignment="center"
-		android:hint="@string/option1"
-		android:textIsSelectable="true"
-		android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-	<EditText
-	    android:id="@+id/ip_address"
-	    android:layout_height="wrap_content"
-	    android:layout_width="wrap_content"
-	    android:layout_gravity="center"
-	    android:layout_marginTop="40dp"
-	    android:hint="@string/option1"
-		android:background="@drawable/apptheme_edit_text_holo_dark"
-	    android:textAlignment="center"
-	    android:ems="10">
-
-	<requestFocus/>
-
-	</EditText>
-
-	<View
-		android:layout_width="fill_parent"
-		android:layout_height="30dp"/>
-
-	<TextView
-		android:id="@+id/port_number_label"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:textStyle="bold"
-		android:textAlignment="center"
-		android:hint="@string/option2"
-		android:textIsSelectable="true"
-		android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-	<EditText
-		android:id="@+id/port_number"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:layout_gravity="center"
-		android:layout_marginTop="40dp"
-		android:inputType="numberDecimal"
-		android:hint="@string/option2"
-		android:background="@drawable/apptheme_edit_text_holo_dark"
-		android:textAlignment="center"
-		android:ems="10">
-
-	</EditText>
-
-	<View
-		android:layout_width="fill_parent"
-		android:layout_height="30dp"/>
-
-	<TableLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:stretchColumns="1">
-
-		<TableRow
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content">
+			android:layout_height="match_parent"
+			android:orientation="vertical">
 
-			<Button
-				android:id="@+id/default_config_button"
-				android:layout_column="0"
-				android:layout_width="match_parent"
-				android:ems="9"
-				android:textStyle="bold"
-				android:text="@string/default_configuration"
-				android:textColor="@android:color/white"
-				android:background="@drawable/apptheme_btn_default_focused_holo_dark"/>
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="15dp"
+				android:background="@android:color/holo_blue_dark" />
 
-			<Button
-				android:id="@+id/modify_button"
-				android:layout_column="2"
+			<TextView
+				android:id="@+id/academic_title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:ems="9"
+				android:gravity="center"
 				android:textStyle="bold"
-				android:text="@string/submit_configuration"
+				android:text="@string/configuration_title"
+				android:textSize="@dimen/abc_text_size_medium_material"
+				android:singleLine="false"
 				android:textColor="@android:color/white"
-				android:background="@drawable/apptheme_btn_default_holo_dark"/>
+				android:background="@android:color/holo_blue_dark" />
 
-		</TableRow>
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="15dp"
+				android:background="@android:color/holo_blue_dark" />
 
-	<View
-		android:layout_width="fill_parent"
-		android:layout_height="30dp"/>
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="30dp"/>
 
-		<TableRow
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content">
+			<TextView
+				android:id="@+id/ip_address_label"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:textStyle="bold"
+				android:textAlignment="center"
+				android:hint="@string/option1"
+				android:textIsSelectable="true"
+				android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-			<Button
-				android:id="@+id/connect_button"
-				android:layout_column="0"
+			<EditText
+				android:id="@+id/ip_address"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginTop="40dp"
+				android:hint="@string/option1"
+				android:background="@drawable/apptheme_edit_text_holo_dark"
+				android:textAlignment="center"
+				android:ems="10">
+
+			<requestFocus/>
+
+			</EditText>
+
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="30dp"/>
+
+			<TextView
+				android:id="@+id/port_number_label"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:textStyle="bold"
+				android:textAlignment="center"
+				android:hint="@string/option2"
+				android:textIsSelectable="true"
+				android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+			<EditText
+				android:id="@+id/port_number"
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginTop="40dp"
+				android:inputType="numberDecimal"
+				android:hint="@string/option2"
+				android:background="@drawable/apptheme_edit_text_holo_dark"
+				android:textAlignment="center"
+				android:ems="10">
+
+			</EditText>
+
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="30dp"/>
+
+			<TableLayout
 				android:layout_width="match_parent"
-				android:ems="10"
-				android:textStyle="bold"
-				android:text="@string/connect_button"
-				android:textColor="@android:color/white"
-				android:background="@drawable/apptheme_btn_default_holo_dark"/>
+				android:layout_height="wrap_content"
+				android:stretchColumns="1">
 
-			<Button
-				android:id="@+id/disconnect_button"
-				android:layout_column="2"
-				android:layout_width="match_parent"
-				android:ems="10"
-				android:textStyle="bold"
-				android:text="@string/disconnect_button"
-				android:textColor="@android:color/white"
-				android:background="@drawable/apptheme_btn_default_holo_dark"/>
+				<TableRow
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
 
-		</TableRow>
+					<Button
+						android:id="@+id/default_config_button"
+						android:layout_column="0"
+						android:layout_width="match_parent"
+						android:ems="9"
+						android:textStyle="bold"
+						android:text="@string/default_configuration"
+						android:textColor="@android:color/white"
+						android:background="@drawable/apptheme_btn_default_focused_holo_dark"/>
 
-	</TableLayout>
+					<Button
+						android:id="@+id/modify_button"
+						android:layout_column="2"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:ems="9"
+						android:textStyle="bold"
+						android:text="@string/submit_configuration"
+						android:textColor="@android:color/white"
+						android:background="@drawable/apptheme_btn_default_holo_dark"/>
+
+				</TableRow>
+
+			<View
+				android:layout_width="fill_parent"
+				android:layout_height="30dp"/>
+
+				<TableRow
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+
+					<Button
+						android:id="@+id/connect_button"
+						android:layout_column="0"
+						android:layout_width="match_parent"
+						android:ems="10"
+						android:textStyle="bold"
+						android:text="@string/connect_button"
+						android:textColor="@android:color/white"
+						android:background="@drawable/apptheme_btn_default_holo_dark"/>
+
+					<Button
+						android:id="@+id/disconnect_button"
+						android:layout_column="2"
+						android:layout_width="match_parent"
+						android:ems="10"
+						android:textStyle="bold"
+						android:text="@string/disconnect_button"
+						android:textColor="@android:color/white"
+						android:background="@drawable/apptheme_btn_default_holo_dark"/>
+
+				</TableRow>
+
+			</TableLayout>
+
+		</LinearLayout>
+
+	</ScrollView>
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.ciaa_poncho.lucashour.transmisortcpjoystick;
+package com.ciaa_poncho.lucashour.transmisortcpjoystick.GeneralGUI;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -17,6 +17,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.Fragments.BehaviourFragment;
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.Fragments.CalibrationFragment;
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.Fragments.ConfigurationFragment;
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.R;
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.TCP.TcpSocketData;
 
 public class MainActivity extends ActionBarActivity {
 

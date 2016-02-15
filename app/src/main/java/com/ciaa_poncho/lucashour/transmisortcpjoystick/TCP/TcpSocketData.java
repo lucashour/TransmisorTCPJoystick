@@ -1,8 +1,6 @@
-package com.ciaa_poncho.lucashour.transmisortcpjoystick;
+package com.ciaa_poncho.lucashour.transmisortcpjoystick.TCP;
 
 import android.app.Activity;
-import android.content.Context;
-import android.widget.TextView;
 
 import java.net.Socket;
 

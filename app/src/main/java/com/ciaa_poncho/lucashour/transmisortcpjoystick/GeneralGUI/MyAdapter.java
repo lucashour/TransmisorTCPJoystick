@@ -1,4 +1,4 @@
-package com.ciaa_poncho.lucashour.transmisortcpjoystick;
+package com.ciaa_poncho.lucashour.transmisortcpjoystick.GeneralGUI;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.R;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private static final int TYPE_HEADER = 0;  // Declaring Variable to Understand which View is being worked on
-    // IF the viaew under inflation and population is header or Item
+    // IF the view under inflation and population is header or Item
     private static final int TYPE_ITEM = 1;
 
     private String mNavTitles[]; // String Array to store the passed titles Value from MainActivity.java

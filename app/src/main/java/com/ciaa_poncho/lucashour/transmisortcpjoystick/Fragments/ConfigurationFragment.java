@@ -1,4 +1,4 @@
-package com.ciaa_poncho.lucashour.transmisortcpjoystick;
+package com.ciaa_poncho.lucashour.transmisortcpjoystick.Fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +8,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.R;
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.TCP.TcpSocketData;
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.TCP.TcpSocketManager;
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.GeneralGUI.ToastManager;
 
 public class ConfigurationFragment extends Fragment implements View.OnClickListener {
 
@@ -59,13 +64,15 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
         setHasOptionsMenu(false); //Indicamos que este Fragment no tiene su propio menu de opciones
     }
 
+    /* CLick listener */
+
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.connect_button:
-                displayInformationMessage(TcpSocketManager.connectToSocket());
+                ToastManager.displayInformationMessage(TcpSocketManager.connectToSocket(), toast, getActivity());
                 break;
             case R.id.disconnect_button:
-                displayInformationMessage(TcpSocketManager.disconnectFromSocket());
+                ToastManager.displayInformationMessage(TcpSocketManager.disconnectFromSocket(), toast, getActivity());
                 break;
             case R.id.default_config_button:
                 ip_address.setText("192.168.4.1");
@@ -81,39 +88,6 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
                 }
                 break;
         }
-    }
-
-    private boolean existsIpAddress(){
-        if (TcpSocketData.getInstance().getIpAddress() == null) {
-            showToastMessage("Configuración de dirección IP destino requerida.");
-            return false;
-        }
-        return true;
-    }
-
-    private static String formatMessageToSend(int value){
-        String string = String.valueOf(value);
-        return (String.valueOf(string.length() + 1) + "%" + string);
-    }
-
-    private void displayInformationMessage(String message){
-        if (!message.equals(""))
-            showToastMessage(message);
-    }
-
-    private void showToastMessage(String message){
-        showToast(message,Toast.LENGTH_SHORT);
-    }
-
-    private void showLongToastMessage(String message){
-        showToast(message, Toast.LENGTH_LONG);
-    }
-
-    private void showToast(String message, int duration){
-        if (toast != null)
-            toast.cancel();
-        toast = Toast.makeText(this.getActivity().getApplicationContext(), message, duration);
-        toast.show();
     }
 
 }

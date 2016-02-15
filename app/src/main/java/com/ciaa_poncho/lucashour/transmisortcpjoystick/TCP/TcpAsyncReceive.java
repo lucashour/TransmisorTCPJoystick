@@ -1,9 +1,11 @@
-package com.ciaa_poncho.lucashour.transmisortcpjoystick;
+package com.ciaa_poncho.lucashour.transmisortcpjoystick.TCP;
 
 import android.os.AsyncTask;
-//import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.Calibration.CalibrationData;
+import com.ciaa_poncho.lucashour.transmisortcpjoystick.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -67,14 +69,12 @@ public class TcpAsyncReceive extends AsyncTask<Void, String, Void> {
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()), 50);
             while (TcpSocketData.getInstance().canReceiveData()){
                 if ((currentCharacter = (char) input.read()) != null){
-                //if((currentCharacter = TcpSocketManager.receiveCharFromSocket()) != 0){
                     if (currentCharacter == '$')
                         limitCounter++;
                     else {
                         incomingMessage += currentCharacter;
                     }
                     if (limitCounter == 2){
-                        //Log.i("TCP", processIncomingMessage(incomingMessage));
                         publishProgress(processIncomingMessage(incomingMessage));
                         limitCounter = 0;
                         incomingMessage = "";
@@ -86,7 +86,7 @@ public class TcpAsyncReceive extends AsyncTask<Void, String, Void> {
     }
 
     private String processIncomingMessage(String incomingMessage){
-        /* Procesamiento de string de entrada */
+        // Procesamiento de string de entrada
         String command = incomingMessage.substring(0, 5);
         String output;
         switch (command){
@@ -117,7 +117,7 @@ public class TcpAsyncReceive extends AsyncTask<Void, String, Void> {
                 dataType = "RPS";
                 break;
         }
-        /* Construcción de mensaje para mostrar */
+        // Construcción de mensaje para mostrar
         return ("S" + motorId + dataType + output + motorId + ": " + value);
     }
 
@@ -130,7 +130,7 @@ public class TcpAsyncReceive extends AsyncTask<Void, String, Void> {
     }
 
     private String getRpmFromInterruptionAmount(String interruptions){
-        int slots = GlobalData.getInstance().getSlots(), time = GlobalData.getInstance().getTime();
+        int slots = CalibrationData.getInstance().getSlots(), time = CalibrationData.getInstance().getTime();
         int rpm = (Integer.valueOf(interruptions) * 1000 * 60) / (slots * time);
         return String.valueOf(rpm);
     }
@@ -140,20 +140,23 @@ public class TcpAsyncReceive extends AsyncTask<Void, String, Void> {
         String [] dataArray = information.split("\\,");
         int pwm = Integer.valueOf(dataArray[1]);
         int rpm = Integer.valueOf(dataArray[2]);
-        GlobalData.getInstance().getRpmCurves()[motorId][pwm] = rpm;
+        CalibrationData.getInstance().getRpmCurves()[motorId][pwm] = rpm;
 
-        // Once the calibration is completed, the max RPM value reached is stored.
+        // Una vez que la calibración es completada, el máximo valor de RPM alcanzado es almacenado.
         if (pwm == 100){
-            if (motorId == 0)
-                GlobalData.getInstance().setMax_rpm_motor0(rpm);
-            else
-                GlobalData.getInstance().setMax_rpm_motor1(rpm);
+            if (motorId == 0) {
+                CalibrationData.getInstance().setMax_rpm_motor0(rpm);
+                int[][] temp = CalibrationData.getInstance().getRpmCurves();
+            }
+            else {
+                CalibrationData.getInstance().setMax_rpm_motor1(rpm);
+                int[][] temp = CalibrationData.getInstance().getRpmCurves();
+            }
         }
 
-        // If both motor1 and motor2 had already been calibrated, the maximum RPM value the system
-        // must work is calculated.
-        if (GlobalData.getInstance().getMax_rpm_motor0() != 0 && GlobalData.getInstance().getMax_rpm_motor1() != 0)
-            GlobalData.getInstance().setMax_RPM();
+        // Si los motores 0 y 1 ya han sido calibrados, el máximo valor de RPM al que el sistema debe trabajar es calculado
+        if (CalibrationData.getInstance().getMax_rpm_motor0() != 0 && CalibrationData.getInstance().getMax_rpm_motor1() != 0)
+            CalibrationData.getInstance().setMax_RPM();
     }
 }
 

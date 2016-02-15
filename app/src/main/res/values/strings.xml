@@ -28,6 +28,7 @@
     <string name="option2">Puerto</string>
     <string name="incoming_message_label_1">Estado del motor 1</string>
     <string name="incoming_message_label_2">Estado del motor 2</string>
+    <string name="calibration_checkbox">Habilitar calibración</string>
     <string name="calibration_title">CALIBRACIÓN</string>
     <string name="calibration_description">
         Seleccionar el tiempo de conteo de interrupciones en milisegundos para la calibración.
