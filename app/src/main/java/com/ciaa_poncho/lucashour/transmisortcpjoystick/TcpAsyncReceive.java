@@ -141,6 +141,19 @@ public class TcpAsyncReceive extends AsyncTask<Void, String, Void> {
         int pwm = Integer.valueOf(dataArray[1]);
         int rpm = Integer.valueOf(dataArray[2]);
         GlobalData.getInstance().getRpmCurves()[motorId][pwm] = rpm;
+
+        // Once the calibration is completed, the max RPM value reached is stored.
+        if (pwm == 100){
+            if (motorId == 0)
+                GlobalData.getInstance().setMax_rpm_motor0(rpm);
+            else
+                GlobalData.getInstance().setMax_rpm_motor1(rpm);
+        }
+
+        // If both motor1 and motor2 had already been calibrated, the maximum RPM value the system
+        // must work is calculated.
+        if (GlobalData.getInstance().getMax_rpm_motor0() != 0 && GlobalData.getInstance().getMax_rpm_motor1() != 0)
+            GlobalData.getInstance().setMax_RPM();
     }
 }
 

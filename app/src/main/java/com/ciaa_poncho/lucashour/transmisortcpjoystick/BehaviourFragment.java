@@ -96,55 +96,71 @@ public class BehaviourFragment extends Fragment implements View.OnTouchListener 
         int value_y;
         int value_x;
 
+        if (GlobalData.getInstance().getMax_RPM() != 0 ) {
+            switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    value_y = formatNumber(event.getY());
+                    value_x = formatNumber(event.getX());
 
-        switch (action){
-            case MotionEvent.ACTION_DOWN:
-                value_y = formatNumber(event.getY());
-                value_x = formatNumber(event.getX());
+                    if (value_x < 200 && value_x > 0 && value_y < 200 && value_y > 0) {
+                        if (value_y < 100){
+                            pwm_motor1 = 100 - (int)(((100 - value_y) * GlobalData.getInstance().getMax_pwm_motor0())/100.0);
+                            pwm_motor2 = 100 - (int)(((100 - value_y) * GlobalData.getInstance().getMax_pwm_motor1())/100.0);
+                        }else{
+                            pwm_motor1 = (int)(((value_y - 100) * GlobalData.getInstance().getMax_pwm_motor0())/ 100.0) + 100;
+                            pwm_motor2 = (int)(((value_y - 100) * GlobalData.getInstance().getMax_pwm_motor1())/ 100.0) + 100;
+                        }
 
-                if (value_x < 200 && value_x > 0 && value_y < 200 && value_y > 0){
-                    pwm_motor1 = value_y;
-                    pwm_motor2 = value_y;
-                    if (value_x < 95){
-                        if (value_y < 100)
-                            pwm_motor1 = value_y + (int)((100 - value_x)*(100 - value_y)/100.0);
-                        else
-                            pwm_motor1 = value_y - (int)((100 - value_x)*(value_y - 100)/100.0);
+                        if (value_x < 95) {
+                            if (value_y < 100)
+                                pwm_motor1 = pwm_motor1 + (int) ((100 - value_x) * (100 - pwm_motor1) / 100.0);
+                            else
+                                pwm_motor1 = pwm_motor1 - (int) ((100 - value_x) * (pwm_motor1 - 100) / 100.0);
+                        }
+                        if (value_x > 105) {
+                            if (value_y < 100)
+                                pwm_motor2 = pwm_motor2 + (int) ((value_x - 100) * (100 - pwm_motor2) / 100.0);
+                            else
+                                pwm_motor2 = pwm_motor2 - (int) ((value_x - 100) * (pwm_motor2 - 100) / 100.0);
+                        }
                     }
-                    if (value_x > 105){
-                        if (value_y < 100)
-                            pwm_motor2 = value_y + (int)((value_x - 100)*(100 - value_y)/100.0);
-                        else
-                            pwm_motor2 = value_y - (int)((value_x - 100)*(value_y - 100)/100.0);
-                    }
-                }
-                break;
-            case MotionEvent.ACTION_MOVE:
-                value_y = formatNumber(event.getY());
-                value_x = formatNumber(event.getX());
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    value_y = formatNumber(event.getY());
+                    value_x = formatNumber(event.getX());
 
-                if (value_x < 200 && value_x > 0 && value_y < 200 && value_y > 0){
-                    pwm_motor1 = value_y;
-                    pwm_motor2 = value_y;
-                    if (value_x < 95){
-                        if (value_y < 100)
-                            pwm_motor1 = value_y + (int)((100 - value_x)*(100 - value_y)/100.0);
-                        else
-                            pwm_motor1 = value_y - (int)((100 - value_x)*(value_y - 100)/100.0);
+                    if (value_x < 200 && value_x > 0 && value_y < 200 && value_y > 0) {
+                        if (value_y < 100){
+                            pwm_motor1 = 100 - (int)(((100 - value_y) * GlobalData.getInstance().getMax_pwm_motor0())/100.0);
+                            pwm_motor2 = 100 - (int)(((100 - value_y) * GlobalData.getInstance().getMax_pwm_motor1())/100.0);
+                        }else{
+                            pwm_motor1 = (int)(((value_y - 100) * GlobalData.getInstance().getMax_pwm_motor0())/ 100.0) + 100;
+                            pwm_motor2 = (int)(((value_y - 100) * GlobalData.getInstance().getMax_pwm_motor1())/ 100.0) + 100;
+                        }
+
+                        if (value_x < 95) {
+                            if (value_y < 100)
+                                pwm_motor1 = pwm_motor1 + (int) ((100 - value_x) * (100 - pwm_motor1) / 100.0);
+                            else
+                                pwm_motor1 = pwm_motor1 - (int) ((100 - value_x) * (pwm_motor1 - 100) / 100.0);
+                        }
+                        if (value_x > 105) {
+                            if (value_y < 100)
+                                pwm_motor2 = pwm_motor2 + (int) ((value_x - 100) * (100 - pwm_motor2) / 100.0);
+                            else
+                                pwm_motor2 = pwm_motor2 - (int) ((value_x - 100) * (pwm_motor2 - 100) / 100.0);
+                        }
                     }
-                    if (value_x > 105){
-                        if (value_y < 100)
-                            pwm_motor2 = value_y + (int)((value_x - 100)*(100 - value_y)/100.0);
-                        else
-                            pwm_motor2 = value_y - (int)((value_x - 100)*(value_y - 100)/100.0);
-                    }
-                }
-                break;
+                    break;
+            }
+
+            TcpSocketManager.sendDataToSocket(formatMessageToSend(pwm_motor1, 0));
+            TcpSocketManager.sendDataToSocket(formatMessageToSend(pwm_motor2, 1));
+            x_axis.setText(formatNumberToMotorExpression(pwm_motor1, 1));
+            y_axis.setText(formatNumberToMotorExpression(pwm_motor2, 2));
+        } else {
+            showToastMessage("Es necesario CALIBRAR.");
         }
-        TcpSocketManager.sendDataToSocket(formatMessageToSend(pwm_motor1, 0));
-        TcpSocketManager.sendDataToSocket(formatMessageToSend(pwm_motor2, 1));
-        x_axis.setText(formatNumberToMotorExpression(pwm_motor1, 1));
-        y_axis.setText(formatNumberToMotorExpression(pwm_motor2, 2));
         return true;
     }
 

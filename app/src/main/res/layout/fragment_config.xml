@@ -91,49 +91,45 @@
 		android:layout_width="fill_parent"
 		android:layout_height="30dp"/>
 
-	<TableRow
+	<TableLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_gravity="center">
+		android:stretchColumns="1">
 
-		<Button
-			android:id="@+id/default_config_button"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:ems="10"
-			android:textStyle="bold"
-			android:text="@string/default_configuration"
-			android:textColor="@android:color/white"
-			android:background="@drawable/apptheme_btn_default_focused_holo_dark"/>
+		<TableRow
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
 
-		<Button
-			android:id="@+id/modify_button"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:ems="10"
-			android:textStyle="bold"
-			android:text="@string/submit_configuration"
-			android:textColor="@android:color/white"
-			android:background="@drawable/apptheme_btn_default_holo_dark"/>
+			<Button
+				android:id="@+id/default_config_button"
+				android:layout_column="0"
+				android:layout_width="match_parent"
+				android:ems="9"
+				android:textStyle="bold"
+				android:text="@string/default_configuration"
+				android:textColor="@android:color/white"
+				android:background="@drawable/apptheme_btn_default_focused_holo_dark"/>
 
-	</TableRow>
+			<Button
+				android:id="@+id/modify_button"
+				android:layout_column="2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:ems="9"
+				android:textStyle="bold"
+				android:text="@string/submit_configuration"
+				android:textColor="@android:color/white"
+				android:background="@drawable/apptheme_btn_default_holo_dark"/>
+
+		</TableRow>
 
 	<View
 		android:layout_width="fill_parent"
 		android:layout_height="30dp"/>
 
-	<TableLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:stretchColumns="2"
-		android:layout_gravity="fill_horizontal">
-
 		<TableRow
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center">
+			android:layout_height="wrap_content">
 
 			<Button
 				android:id="@+id/connect_button"
@@ -147,7 +143,7 @@
 
 			<Button
 				android:id="@+id/disconnect_button"
-				android:layout_column="1"
+				android:layout_column="2"
 				android:layout_width="match_parent"
 				android:ems="10"
 				android:textStyle="bold"
